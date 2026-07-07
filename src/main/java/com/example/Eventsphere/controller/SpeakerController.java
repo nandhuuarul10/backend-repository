@@ -33,7 +33,7 @@ SpeakerService speakerservice;
         
     }
 
-    @GetMapping("/GetById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SpeakerDTO> getSpeakersById(@PathVariable Long id){
         Optional<SpeakerDTO> dto=speakerservice.getSpeakersById(id);
         return ResponseEntity.status(200).body(dto.get());
@@ -45,12 +45,12 @@ SpeakerService speakerservice;
 
         return ResponseEntity.status(HttpStatus.CREATED).body(speakerservice.createSpeaker(speakerDto));
     }
-    @PutMapping("/UpdateSpeaker/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<SpeakerDTO> updateSpeaker(@PathVariable Long id,@Valid@RequestBody SpeakerDTO updateddto){
         return ResponseEntity.status(200).body(speakerservice.updateSpeaker(id,updateddto));
     }
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/DeleteSpeaker/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteSpeaker(@PathVariable long id){
        String str=speakerservice.deleteSpeaker(id);
         return ResponseEntity.status(200).body(str);
