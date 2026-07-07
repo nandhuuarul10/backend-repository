@@ -31,7 +31,7 @@ public class SessionController {
         return ResponseEntity.status(200).body(dto);
     }
 
-    @GetMapping("/GetById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SessionDTO> getSessionById(@PathVariable Long id) {
         Optional<SessionDTO> opt=sessionService.getSessionById(id);
         return ResponseEntity.status(200).body(opt.get());
@@ -42,13 +42,13 @@ public class SessionController {
         return ResponseEntity.status(201).body(sessionService.addSession(sessiondto));
     }
     
-    @PutMapping("/UpdateSession/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<SessionDTO> updateSession(@PathVariable Long id, @Valid @RequestBody SessionDTO updatedSession){
        return ResponseEntity.status(200).body(sessionService.updateSession(id, updatedSession));
     }
  
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/DeleteSession/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteSession(@PathVariable Long id){
         return ResponseEntity.status(200).body(sessionService.deleteSession(id));
     }
