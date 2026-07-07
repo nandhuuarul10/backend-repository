@@ -27,7 +27,7 @@ public class UserController {
         return ResponseEntity.status(200).body(userService.getAllUsers());
     }
 
-    @PutMapping("/api/user/UpdateUser/{id}")
+    @PutMapping("/api/user/{id}")
     public ResponseEntity<SystemUser> updateUser(
             @Valid @RequestBody SystemUser user,
             @PathVariable Long id,
