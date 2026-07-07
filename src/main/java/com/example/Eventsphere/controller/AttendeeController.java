@@ -32,7 +32,7 @@ public class AttendeeController {
         return ResponseEntity.status(200).body(dto);
         
     }
-    @GetMapping("/GetById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<AttendeeDTO> getAttendeeById(@PathVariable Long id)
 {
     Optional<AttendeeDTO> opt=attendeeService.getAttendeeBYId(id);
@@ -44,13 +44,13 @@ public class AttendeeController {
         return ResponseEntity.status(201).body(attendeeService.addAttendee(attendeedto));
     }
     
-     @PutMapping("/UpdateAttendee/{id}")
+     @PutMapping("/{id}")
     public ResponseEntity<AttendeeDTO> updateAttendee(@PathVariable Long id,@Valid @RequestBody AttendeeDTO updatedAttendee){
        return  ResponseEntity.status(200).body(attendeeService.updateAttendee(id,updatedAttendee));
     }
     
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/DeleteAttendee/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAttendee(@PathVariable Long id){
         return ResponseEntity.status(200).body(attendeeService.deleteAttendee(id));
     }
